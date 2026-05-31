@@ -1,0 +1,86 @@
+Handling Missing Values
+Check missing Price values  
+Formula:
+
+Code
+=COUNTIF(C2:C100,"")
+→ Counts blank cells in the Price column.
+
+Strategy for missing Price
+
+Impute with average:
+
+Code
+=IF(C2="",AVERAGE($C$2:$C$100),C2)
+Or remove rows if price is critical.
+
+Missing Category values
+
+Impute with most frequent category or assign "Miscellaneous":
+
+Code
+=IF(B2="", "Miscellaneous", B2)
+2. 🔵 Correcting Inconsistent Data
+Product Name text formats  
+Standardize case:
+
+Code
+=PROPER(D2)
+Category typos  
+Use Find & Replace (Ctrl+H):
+
+Replace “Electroncs” → “Electronics”
+
+Replace “Furnture” → “Furniture”
+
+Standardization: Apply across the column to unify spelling and format.
+
+3. 🟢 Removing Duplicates
+Identify duplicates
+
+Data tab → Remove Duplicates.
+
+Formula check:
+
+Code
+=COUNTIFS(A:A,A2,B:B,B2,C:C,C2)>1
+→ Returns TRUE if row is duplicate.
+
+4. 🟣 Splitting and Merging Data
+Split Product ID (e.g., 20210101-IN):
+
+Manufacturing Date:
+
+Code
+=LEFT(A2,8)
+Country Code:
+
+Code
+=RIGHT(A2,2)
+Merge Brand + Product Name into “Product Brand”:
+
+Code
+=B2 & " " & C2
+5. 🔴 Number Formatting
+Price column → Currency format
+
+Select column → Format Cells → Currency.
+
+Shortcut: Ctrl+Shift+$.
+
+Manufacturing Date → DD-MM-YYYY format
+
+Format Cells → Date → Custom → DD-MM-YYYY.
+
+6. 🟤 Conditional Formatting
+Data Bars in Price column
+
+Home → Conditional Formatting → Data Bars → Gradient Fill.
+
+Highlight Electronics in Category column
+
+New Rule → Use formula:
+
+Code
+=$B2="Electronics"
+Apply fill color (e.g., yellow).
